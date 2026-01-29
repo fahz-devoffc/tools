@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools By Fahz 🛠️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        /* ====== VARIABLES & RESET ====== */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --dark: #0a0a0f;
+            --dark-alt: #141420;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --success: #4cc9f0;
+            --warning: #f8961e;
+            --danger: #ef233c;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-alt) 100%);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ====== LAYOUT ====== */
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ====== SIDEBAR ====== */
+        .sidebar {
+            width: 280px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-right: 1px solid var(--glass-border);
+            padding: 2rem 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .sidebar-header {
+            padding: 0 1.5rem 2rem;
+            border-bottom: 1px solid var(--glass-border);
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--light);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            color: var(--accent);
+            font-size: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .logo-text {
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 5px;
+            margin-left: 42px;
+        }
+
+        /* ====== TOOL LIST ====== */
+        .tool-list {
+            padding: 0 1rem;
+        }
+
+        .tool-category {
+            color: var(--gray);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 1.5rem 0 0.5rem 1rem;
+        }
+
+        .tool-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            margin: 5px 0;
+            border-radius: 12px;
+            color: var(--light);
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .tool-item:hover {
+            background: rgba(67, 97, 238, 0.1);
+            transform: translateX(5px);
+        }
+
+        .tool-item.active {
+            background: linear-gradient(90deg, rgba(67, 97, 238, 0.2), rgba(247, 37, 133, 0.1));
+            border-left: 4px solid var(--accent);
+        }
+
+        .tool-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            font-size: 1.2rem;
+        }
+
+        .tool-name {
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .tool-badge {
+            background: var(--accent);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        /* ====== MAIN CONTENT ====== */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        /* ====== HEADER ====== */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .welcome-text {
+            color: var(--gray);
+            margin-top: 5px;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-toggle {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary);
+            transform: rotate(30deg);
+        }
+
+        /* ====== TOOL CONTENT ====== */
+        .tool-content {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tool-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            color: var(--light);
+        }
+
+        .tool-description {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* ====== FORM STYLES ====== */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--light);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--light);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: var(--light);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* ====== RESULT DISPLAY ====== */
+        .result-container {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            display: none;
+        }
+
+        .result-container.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-title {
+            color: var(--light);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .result-content {
+            color: var(--gray);
+            line-height: 1.6;
+            word-break: break-all;
+        }
+
+        .result-image {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .result-audio {
+            width: 100%;
+            margin-top: 1rem;
+            border-radius: 10px;
+        }
+
+        .download-btn {
+            margin-top: 1rem;
+            background: linear-gradient(90deg, var(--accent), #ff2d75);
+        }
+
+        /* ====== LOADING STATE ====== */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--glass);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ====== STATS & FOOTER ====== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: var(--glass);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(67, 97, 238, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        /* ====== RESPONSIVE ====== */
+        .mobile-menu-btn {
+            display: none;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 101;
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .user-menu {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .tool-content {
+                padding: 1.5rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ====== CUSTOM SCROLLBAR ====== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+
+        /* ====== NOTIFICATION ====== */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            background: var(--dark);
+            border-left: 4px solid var(--success);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            display: none;
+            z-index: 1000;
+            animation: slideInRight 0.3s ease;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .notification.error {
+            border-left-color: var(--danger);
+        }
+
+        .notification.warning {
+            border-left-color: var(--warning);
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Menu Button -->
+    <div class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="#" class="logo">
+                <i class="fas fa-tools logo-icon"></i>
+                <span class="logo-text">Tools By Fahz</span>
+            </a>
+            <p class="tagline">Powerful tools for developers</p>
+        </div>
+        
+        <div class="tool-list">
+            <div class="tool-category">Social Media Tools</div>
+            <div class="tool-item active" data-tool="welcome">
+                <div class="tool-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <span class="tool-name">Welcome</span>
+            </div>
+            
+            <div class="tool-item" data-tool="nglspam">
+                <div class="tool-icon">
+                    <i class="fas fa-bomb"></i>
+                </div>
+                <span class="tool-name">Spam NGL</span>
+                <span class="tool-badge">New</span>
+            </div>
+            
+            <div class="tool-item" data-tool="tiktok">
+                <div class="tool-icon">
+                    <i class="fab fa-tiktok"></i>
+                </div>
+                <span class="tool-name">Search TikTok</span>
+            </div>
+            
+            <div class="tool-item" data-tool="instagram">
+                <div class="tool-icon">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <span class="tool-name">Instagram Downloader</span>
+            </div>
+            
+            <div class="tool-item" data-tool="pinterest">
+                <div class="tool-icon">
+                    <i class="fab fa-pinterest"></i>
+                </div>
+                <span class="tool-name">Pinterest Downloader</span>
+            </div>
+            
+            <div class="tool-category">Music & Media</div>
+            <div class="tool-item" data-tool="spotify">
+                <div class="tool-icon">
+                    <i class="fab fa-spotify"></i>
+                </div>
+                <span class="tool-name">Spotify Downloader</span>
+            </div>
+            
+            <div class="tool-item" data-tool="spotify-search">
+                <div class="tool-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <span class="tool-name">Search Spotify</span>
+            </div>
+            
+            <div class="tool-category">Image Tools</div>
+            <div class="tool-item" data-tool="hd">
+                <div class="tool-icon">
+                    <i class="fas fa-image"></i>
+                </div>
+                <span class="tool-name">HD Image</span>
+            </div>
+            
+            <div class="tool-category">Creative Tools</div>
+            <div class="tool-item" data-tool="anomali">
+                <div class="tool-icon">
+                    <i class="fas fa-sticky-note"></i>
+                </div>
+                <span class="tool-name">Stiker Anomali Maker</span>
+            </div>
+            
+            <div class="tool-item" data-tool="iqc">
+                <div class="tool-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <span class="tool-name">IQC iPhone</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="main-header">
+            <div>
+                <h1 class="page-title" id="pageTitle">Welcome to Fahz Tools</h1>
+                <p class="welcome-text" id="welcomeText">Select a tool from the sidebar to get started</p>
+            </div>
+            <div class="user-menu">
+                <div class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tool Content Will Be Loaded Here -->
+        <div id="toolContent">
+            <!-- Welcome Content (Default) -->
+            <div class="tool-content animate__animated animate__fadeIn">
+                <div class="tool-title">
+                    <i class="fas fa-star"></i>
+                    Welcome to Tools By Fahz
+                </div>
+                <p class="tool-description">
+                    A collection of powerful tools for social media, music, images, and creativity. 
+                    Each tool is designed to be simple, fast, and effective.
+                </p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalTools">9</div>
+                        <div class="stat-label">Available Tools</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="apiStatus">✓</div>
+                        <div class="stat-label">API Status</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="uptime">100%</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="users">1K+</div>
+                        <div class="stat-label">Happy Users</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(67, 97, 238, 0.1); border-radius: 12px;">
+                    <h3 style="color: var(--light); margin-bottom: 1rem;">🚀 How to Use:</h3>
+                    <ol style="color: var(--gray); line-height: 1.8; padding-left: 1.5rem;">
+                        <li>Select a tool from the sidebar menu</li>
+                        <li>Fill in the required parameters</li>
+                        <li>Click the "Process" or "Search" button</li>
+                        <li>View or download your results</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2024 Tools By Fahz. All tools powered by <a href="https://api.zenitsu.web.id" style="color: var(--primary); text-decoration: none;">Zenitsu API</a></p>
+            <p style="margin-top: 5px; font-size: 0.8rem;">Made with ❤️ for developers and creators</p>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Processing your request...</p>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <span id="notificationMessage">Operation completed successfully!</span>
+    </div>
+
+    <script>
+        // ====== GLOBAL VARIABLES ======
+        const API_BASE = 'https://api.zenitsu.web.id/api';
+        let currentTool = 'welcome';
+
+        // ====== TOOL TEMPLATES ======
+        const toolTemplates = {
+            welcome: `
+                <div class="tool-content animate__animated animate__fadeIn">
+                    <div class="tool-title">
+                        <i class="fas fa-star"></i>
+                        Welcome to Tools By Fahz
+                    </div>
+                    <p class="tool-description">
+                        A collection of powerful tools for social media, music, images, and creativity. 
+                        Each tool is designed to be simple, fast, and effective.
+                    </p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalTools">9</div>
+                            <div class="stat-label">Available Tools</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="apiStatus">✓</div>
+                            <div class="stat-label">API Status</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="uptime">100%</div>
+                            <div class="stat-label">Uptime</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="users">1K+</div>
+                            <div class="stat-label">Happy Users</div>
+                        </div>
+                    </div>
+                </div>
+            `,
+
+            nglspam: `
+                <div class="tool-content animate__animated animate__fadeIn">
+                    <div class="tool-title">
+                        <i class="fas fa-bomb"></i>
+                        Spam NGL
+                    </div>
+                    <p class="tool-description">
+                        Send multiple messages to an NGL link. Enter the username, message, and amount of messages to send.
+                    </p>
+                    
+                    <div class="form-group">
+                        <label class="form-label">NGL Username</label>
+                        <input type="text" class="form-control" id="nglUsername" placeholder="arzz">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Message Text</label>
+                        <input type="text" class="form-control" id="nglText" placeholder="gatau">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Amount</label>
+                            <input type="number" class="form-control" id="nglAmount" placeholder="8" min="1" max="100">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Delay (seconds)</label>
+                            <input type="number" class="form-control" id="nglDelay" placeholder="1" min="0.5" max="10" step="0.5">
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="spamNGL()">
+                        <i class="fas fa-paper-plane"></i> Start Spamming
+                    </button>
+                    
+                    <div class="result-container" id="nglResult">
+                        <h3 class="result-title">
+                            <i class="fas fa-check-circle"></i>
+                            Result
+                        </h3>
+                        <div class="result-content" id="nglResultContent"></div>
+                    </div>
+                </div>
+            `,
+
+            tiktok: `
+                <div class="tool-content animate__animated animate__fadeIn">
+                    <div class="tool-title">
+                        <i class="fab fa-tiktok"></i>
+                        Search TikTok
+                    </div>
+                    <p class="tool-description">
+                        Search for TikTok videos by keyword. Get video information and download links.
+                    </p>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Search Query</label>
+                        <input type="text" class="form-control" id="tiktokQuery" placeholder="Enter search term">
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="searchTikTok()">
+                        <i class="fas fa-search"></i> Search TikTok
+                    </button>
+                    
+                    <div class="result-container" id="tiktokResult">
+                        <h3 class="result-title">
+                            <i class="fas fa-video"></i>
+                            Search Results
+                        </h3>
+                        <div class="result-content" id="tiktokResultContent"></div>
+                    </div>
+                </div>
+            `,
+
+            instagram: `
+                <div class="tool-content animate__animated animate__fadeIn">
+                    <div class="tool-title">
+                        <i class="fab fa-instagram"></i>
+                        Instagram Downloader
+                    </div>
+                    <p class="tool-description">
+                        Download Instagram photos, videos, and reels by pasting the URL.
+                    </p>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Instagram URL</label>
+                        <input type="text" class="form-control" id="igUrl" placeholder="https://www.instagram.com/p/...">
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="downloadInstagram()">
+                        <i class="fas fa-download"></i> Download
+                    </button>
+                    
+                    <div class="result-container" id="igResult">
+                        <h3 class="result-title">
+                            <i class="fas fa-download"></i>
+                            Download Links
+                        </h3>
+                        <div class="result-content" id="igResultContent"></div>
+                    </div>
+                </div>
+            `,
+
+            pinterest: `
+                <div class="tool-content animate__animated animate__fadeIn">
+                    <div class="tool-title">
+                        <i class="fab fa-pinterest"></i>
+                        Pinterest Downloader
+                    </div>
+                    <p class="tool-description">
+                        Download Pinterest images and videos in high quality.
+                    </p>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Pinterest URL</label>
+                        <input type="text" class="form-control" id="pinUrl" placeholder="https://pin.it/...">
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="downloadPinterest()">
+                        <i class="fas fa-download"></i> Download
+                    </button>
+                    
+                    <div class="result-container" id="pinResult">
+                        <h3 class="result-title">
+                            <i class="fas fa-image"></i>
+                            Download Link
+                        </h3>
+                        <div class="result-content" id="pinResultContent"></div>
+                    </div>
+                </div>
+            `,
+
+            spotify: `
+                <div class="tool-content animate__animated animate__fadeIn">
+                    <div class="tool-title">
+                        <i class="fab fa-spotify"></i>
+                        Spotify Downloader
+                    </div>
+                    <p class="tool-description">
+                        Download Spotify tracks by pasting the song or playlist URL.
+                    </p>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Spotify URL</label>
+                        <input type="text" class="form-control" id="spotifyUrl" placeholder="https://open.spotify.com/track/...">
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="downloadSpotify()">
+                        <i class="fas fa-download"></i> Download
+                    </button>
+                    
+                    <div class="result-container" id="spotifyResult">
+                        <h3 class="result-title">
+                            <i class="fas fa-music"></i>
+                            Download Link
+                        </h3>
+                        <div class="result-content" id="spotifyResultContent"></div>
+                    </div>
+                </div>
+            `,
+
+            'spotify-search': `
+                <div class="tool-content animate__animated animate__fadeIn">
+                    <div class="tool-title">
+                        <i class="fas fa-search"></i>
+                        Search Spotify
+                    </div>
+                    <p class="tool-description">
+                        Search for tracks, artists, albums, and playlists on Spotify.
+                    </p>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Search Query</label>
+                        <input type="text" class="form-control" id="spotifyQuery" placeholder="Hindia">
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="searchSpotify()">
+                        <i class="fas fa-search"></i> Search Spotify
+                    </button>
+                    
+                    <div class="result-container" id="spotifySearchResult">
+                        <h3 class="result-title">
+                            <i class="fas fa-list"></i>
+                            Search Results
+                        </h3>
+                        <div class="result-content" id="spotifySearchResultContent"></div>
+                    </div>
+                </div>
+            `,
+
+            hd: `
+                <div class="tool-content animate__animated animate__fadeIn">
+                    <div class="tool-title">
+                        <i class="fas fa-image"></i>
+                        HD Image Enhancer
+                    </div>
+                    <p class="tool-description">
+                        Enhance image quality by upscaling to HD resolution.
+                    </p>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Image URL</label>
+                        <input type="text" class="form-control" id="imageUrl" placeholder="https://example.com/image.jpg">
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="enhanceImage()">
+                        <i class="fas fa-magic"></i> Enhance Image
+                    </button>
+                    
+                    <div class="result-container" id="imageResult">
+                        <h3 class="result-title">
+                            <i class="fas fa-image"></i>
+                            Enhanced Image
+                        </h3>
+                        <div class="result-content" id="imageResultContent"></div>
+                    </div>
+                </div>
+            `,
+
+            anomali: `
+                <div class="tool-content animate__animated animate__fadeIn">
+                    <div class="tool-title">
+                        <i class="fas fa-sticky-note"></i>
+                        Stiker Anomali Maker
+                    </div>
+                    <p class="tool-description">
+                        Create custom "Anomali" style stickers with your text and color.
+                    </p>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Text</label>
+                        <input type="text" class="form-control" id="anomaliText" placeholder="halo">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Color</label>
+                        <input type="text" class="form-control" id="anomaliColor" placeholder="blue" list="colorSuggestions">
+                        <datalist id="colorSuggestions">
+                            <option value="blue">
+                            <option value="red">
+                            <option value="green">
+                            <option value="yellow">
+                            <option value="purple">
+                        </datalist>
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="createAnomali()">
+                        <i class="fas fa-plus-circle"></i> Create Sticker
+                    </button>
+                    
+                    <div class="result-container" id="anomaliResult">
+                        <h3 class="result-title">
+                            <i class="fas fa-sticky-note"></i>
+                            Your Sticker
+                        </h3>
+                        <div class="result-content" id="anomaliResultContent"></div>
+                    </div>
+                </div>
+            `,
+
+            iqc: `
+                <div class="tool-content animate__animated animate__fadeIn">
+                    <div class="tool-title">
+                        <i class="fas fa-mobile-alt"></i>
+                        IQC iPhone Maker
+                    </div>
+                    <p class="tool-description">
+                        Create iPhone-style "IQC" (I'm Questioning You) images with custom text and time.
+                    </p>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Text</label>
+                        <input type="text" class="form-control" id="iqcText" placeholder="teks mu">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Time</label>
+                        <input type="text" class="form-control" id="iqcTime" placeholder="12.00">
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="createIQC()">
+                        <i class="fas fa-mobile-alt"></i> Create IQC
+                    </button>
+                    
+                    <div class="result-container" id="iqcResult">
+                        <h3 class="result-title">
+                            <i class="fas fa-image"></i>
+                            Your IQC Image
+                        </h3>
+                        <div class="result-content" id="iqcResultContent"></div>
+                    </div>
+                </div>
+            `
+        };
+
+        // ====== TOOL PAGE TITLES ======
+        const toolTitles = {
+            welcome: 'Welcome to Fahz Tools',
+            nglspam: 'Spam NGL Tool',
+            tiktok: 'TikTok Search',
+            instagram: 'Instagram Downloader',
+            pinterest: 'Pinterest Downloader',
+            spotify: 'Spotify Downloader',
+            'spotify-search': 'Spotify Search',
+            hd: 'HD Image Enhancer',
+            anomali: 'Stiker Anomali Maker',
+            iqc: 'IQC iPhone Maker'
+        };
+
+        const toolDescriptions = {
+            welcome: 'Select a tool from the sidebar to get started',
+            nglspam: 'Send multiple messages to NGL links',
+            tiktok: 'Search and discover TikTok content',
+            instagram: 'Download Instagram photos and videos',
+            pinterest: 'Download Pinterest images',
+            spotify: 'Download Spotify tracks',
+            'spotify-search': 'Search Spotify music',
+            hd: 'Enhance image quality to HD',
+            anomali: 'Create custom Anomali stickers',
+            iqc: 'Create iPhone-style IQC images'
+        };
+
+        // ====== DOM ELEMENTS ======
+        const sidebar = document.getElementById('sidebar');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const toolContent = document.getElementById('toolContent');
+        const pageTitle = document.getElementById('pageTitle');
+        const welcomeText = document.getElementById('welcomeText');
+        const loading = document.getElementById('loading');
+        const notification = document.getElementById('notification');
+        const notificationMessage = document.getElementById('notificationMessage');
+
+        // ====== EVENT LISTENERS ======
+        document.addEventListener('DOMContentLoaded', () => {
+            // Tool navigation
+            document.querySelectorAll('.tool-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const tool = item.getAttribute('data-tool');
+                    switchTool(tool);
+                    
+                    // Update active state
+                    document.querySelectorAll('.tool-item').forEach(i => {
+                        i.classList.remove('active');
+                    });
+                    item.classList.add('active');
+                    
+                    // Close mobile sidebar
+                    if (window.innerWidth <= 1024) {
+                        sidebar.classList.remove('active');
+                    }
+                });
+            });
+
+            // Mobile menu
+            mobileMenuBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+            });
+
+            // Theme toggle
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 1024 && 
+                    !sidebar.contains(e.target) && 
+                    !mobileMenuBtn.contains(e.target) &&
+                    sidebar.classList.contains('active')) {
+                    sidebar.classList.remove('active');
+                }
+            });
+
+            // Test API connection
+            testAPIConnection();
+        });
+
+        // ====== TOOL SWITCHING ======
+        function switchTool(tool) {
+            currentTool = tool;
+            
+            // Update page title
+            pageTitle.textContent = toolTitles[tool] || 'Tools By Fahz';
+            welcomeText.textContent = toolDescriptions[tool] || 'Select a tool from the sidebar';
+            
+            // Load tool content
+            toolContent.innerHTML = toolTemplates[tool] || toolTemplates.welcome;
+            
+            // Add animation
+            const content = toolContent.querySelector('.tool-content');
+            if (content) {
+                content.classList.add('animate__animated', 'animate__fadeIn');
+            }
+        }
+
+        // ====== API FUNCTIONS ======
+        async function testAPIConnection() {
+            try {
+                const response = await fetch(`${API_BASE}/tools/nglspam?username=test&text=test&amount=1`);
+                if (response.ok) {
+                    document.getElementById('apiStatus').textContent = '✓';
+                    showNotification('API connection successful', 'success');
+                }
+            } catch (error) {
+                document.getElementById('apiStatus').textContent = '✗';
+                showNotification('API connection failed', 'error');
+            }
+        }
+
+        function showLoading() {
+            loading.classList.add('show');
+        }
+
+        function hideLoading() {
+            loading.classList.remove('show');
+        }
+
+        function showNotification(message, type = 'success') {
+            notificationMessage.textContent = message;
+            notification.className = 'notification';
+            notification.classList.add(type);
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+
+        function showResult(containerId, contentId, content, isImage = false, isAudio = false) {
+            const container = document.getElementById(containerId);
+            const contentElement = document.getElementById(contentId);
+            
+            if (isImage) {
+                contentElement.innerHTML = `<img src="${content}" class="result-image" alt="Result">`;
+            } else if (isAudio) {
+                contentElement.innerHTML = `
+                    <audio controls class="result-audio">
+                        <source src="${content}" type="audio/mpeg">
+                    </audio>
+                    <br>
+                    <a href="${content}" class="btn btn-primary download-btn" download>
+                        <i class="fas fa-download"></i> Download Audio
+                    </a>
+                `;
+            } else {
+                contentElement.innerHTML = content;
+            }
+            
+            container.classList.add('show');
+        }
+
+        // ====== TOOL FUNCTIONS ======
+        async function spamNGL() {
+            const username = document.getElementById('nglUsername').value;
+            const text = document.getElementById('nglText').value;
+            const amount = document.getElementById('nglAmount').value;
+            const delay = document.getElementById('nglDelay').value || 1;
+
+            if (!username || !text || !amount) {
+                showNotification('Please fill all fields', 'error');
+                return;
+            }
+
+            showLoading();
+            try {
+                const response = await fetch(`${API_BASE}/tools/nglspam?username=${encodeURIComponent(username)}&text=${encodeURIComponent(text)}&amount=${amount}`);
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    showResult('nglResult', 'nglResultContent', 
+                        `✅ Successfully sent ${amount} messages to ${username}<br>
+                         Message: "${text}"<br>
+                         Delay: ${delay}s between messages`);
+                    showNotification(`Sent ${amount} messages successfully`);
+                } else {
+                    throw new Error(data.message || 'Failed to send messages');
+                }
+            } catch (error) {
+                showResult('nglResult', 'nglResultContent', 
+                    `❌ Error: ${error.message}<br>
+                     Please check the username and try again`);
+                showNotification('Failed to send messages', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function searchTikTok() {
+            const query = document.getElementById('tiktokQuery').value;
+            
+            if (!query) {
+                showNotification('Please enter a search query', 'error');
+                return;
+            }
+
+            showLoading();
+            try {
+                const response = await fetch(`${API_BASE}/search/tiktok?q=${encodeURIComponent(query)}`);
+                const data = await response.json();
+                
+                if (data.status === 'success' && data.data) {
+                    let html = `<div style="display: grid; gap: 1rem;">`;
+                    data.data.forEach((video, index) => {
+                        html += `
+                            <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 10px;">
+                                <strong>${index + 1}. ${video.title || 'TikTok Video'}</strong><br>
+                                Author: ${video.author || 'Unknown'}<br>
+                                <a href="${video.url}" target="_blank" style="color: var(--primary);">Watch Video</a>
+                            </div>
+                        `;
+                    });
+                    html += `</div>`;
+                    
+                    showResult('tiktokResult', 'tiktokResultContent', html);
+                    showNotification(`Found ${data.data.length} results`);
+                } else {
+                    throw new Error('No results found');
+                }
+            } catch (error) {
+                showResult('tiktokResult', 'tiktokResultContent', 
+                    `❌ Error: ${error.message}<br>
+                     Please try a different search term`);
+                showNotification('Search failed', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function downloadInstagram() {
+            const url = document.getElementById('igUrl').value;
+            
+            if (!url || !url.includes('instagram.com')) {
+                showNotification('Please enter a valid Instagram URL', 'error');
+                return;
+            }
+
+            showLoading();
+            try {
+                const response = await fetch(`${API_BASE}/download/instagram?url=${encodeURIComponent(url)}`);
+                const data = await response.json();
+                
+                if (data.status === 'success' && data.url) {
+                    let html = '';
+                    if (data.type === 'image') {
+                        html = `
+                            <img src="${data.url}" class="result-image" alt="Instagram Image"><br>
+                            <a href="${data.url}" class="btn btn-primary download-btn" download>
+                                <i class="fas fa-download"></i> Download Image
+                            </a>
+                        `;
+                    } else if (data.type === 'video') {
+                        html = `
+                            <video controls class="result-audio" style="width: 100%;">
+                                <source src="${data.url}" type="video/mp4">
+                            </video><br>
+                            <a href="${data.url}" class="btn btn-primary download-btn" download>
+                                <i class="fas fa-download"></i> Download Video
+                            </a>
+                        `;
+                    } else {
+                        html = `<a href="${data.url}" target="_blank" style="color: var(--primary);">Download Link</a>`;
+                    }
+                    
+                    showResult('igResult', 'igResultContent', html, data.type === 'image');
+                    showNotification('Download link ready');
+                } else {
+                    throw new Error(data.message || 'Failed to get download link');
+                }
+            } catch (error) {
+                showResult('igResult', 'igResultContent', 
+                    `❌ Error: ${error.message}<br>
+                     Make sure the URL is correct and the post is public`);
+                showNotification('Download failed', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function downloadPinterest() {
+            const url = document.getElementById('pinUrl').value;
+            
+            if (!url || !url.includes('pin.it') && !url.includes('pinterest.com')) {
+                showNotification('Please enter a valid Pinterest URL', 'error');
+                return;
+            }
+
+            showLoading();
+            try {
+                const response = await fetch(`${API_BASE}/download/pin?url=${encodeURIComponent(url)}`);
+                const data = await response.json();
+                
+                if (data.status === 'success' && data.url) {
+                    showResult('pinResult', 'pinResultContent', 
+                        `<img src="${data.url}" class="result-image" alt="Pinterest Image"><br>
+                         <a href="${data.url}" class="btn btn-primary download-btn" download>
+                            <i class="fas fa-download"></i> Download Image
+                         </a>`, true);
+                    showNotification('Image downloaded successfully');
+                } else {
+                    throw new Error(data.message || 'Failed to download image');
+                }
+            } catch (error) {
+                showResult('pinResult', 'pinResultContent', 
+                    `❌ Error: ${error.message}<br>
+                     Make sure the URL is correct`);
+                showNotification('Download failed', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function downloadSpotify() {
+            const url = document.getElementById('spotifyUrl').value;
+            
+            if (!url || !url.includes('spotify.com')) {
+                showNotification('Please enter a valid Spotify URL', 'error');
+                return;
+            }
+
+            showLoading();
+            try {
+                const response = await fetch(`${API_BASE}/download/spotify?url=${encodeURIComponent(url)}`);
+                const data = await response.json();
+                
+                if (data.status === 'success' && data.url) {
+                    showResult('spotifyResult', 'spotifyResultContent', '', false, true);
+                    document.getElementById('spotifyResultContent').innerHTML = `
+                        <audio controls class="result-audio">
+                            <source src="${data.url}" type="audio/mpeg">
+                        </audio><br>
+                        <a href="${data.url}" class="btn btn-primary download-btn" download>
+                            <i class="fas fa-download"></i> Download Audio
+                        </a>
+                    `;
+                    showNotification('Audio ready to download');
+                } else {
+                    throw new Error(data.message || 'Failed to get audio');
+                }
+            } catch (error) {
+                showResult('spotifyResult', 'spotifyResultContent', 
+                    `❌ Error: ${error.message}<br>
+                     Make sure the URL is correct and the track is available`);
+                showNotification('Download failed', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function searchSpotify() {
+            const query = document.getElementById('spotifyQuery').value;
+            
+            if (!query) {
+                showNotification('Please enter a search query', 'error');
+                return;
+            }
+
+            showLoading();
+            try {
+                const response = await fetch(`${API_BASE}/search/spotify?q=${encodeURIComponent(query)}`);
+                const data = await response.json();
+                
+                if (data.status === 'success' && data.data) {
+                    let html = `<div style="display: grid; gap: 1rem;">`;
+                    data.data.forEach((item, index) => {
+                        html += `
+                            <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 10px; display: flex; gap: 1rem; align-items: center;">
+                                ${item.image ? `<img src="${item.image}" style="width: 60px; height: 60px; border-radius: 5px;">` : ''}
+                                <div>
+                                    <strong>${item.name || 'Unknown'}</strong><br>
+                                    ${item.artist ? `Artist: ${item.artist}<br>` : ''}
+                                    ${item.album ? `Album: ${item.album}<br>` : ''}
+                                    <a href="${item.url}" target="_blank" style="color: var(--primary);">Open in Spotify</a>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    html += `</div>`;
+                    
+                    showResult('spotifySearchResult', 'spotifySearchResultContent', html);
+                    showNotification(`Found ${data.data.length} results`);
+                } else {
+                    throw new Error('No results found');
+                }
+            } catch (error) {
+                showResult('spotifySearchResult', 'spotifySearchResultContent', 
+                    `❌ Error: ${error.message}<br>
+                     Please try a different search term`);
+                showNotification('Search failed', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function enhanceImage() {
+            const url = document.getElementById('imageUrl').value;
+            
+            if (!url) {
+                showNotification('Please enter an image URL', 'error');
+                return;
+            }
+
+            showLoading();
+            try {
+                const response = await fetch(`${API_BASE}/tools/hd?imgUrl=${encodeURIComponent(url)}`);
+                const data = await response.json();
+                
+                if (data.status === 'success' && data.url) {
+                    showResult('imageResult', 'imageResultContent', 
+                        `<img src="${data.url}" class="result-image" alt="Enhanced Image"><br>
+                         <a href="${data.url}" class="btn btn-primary download-btn" download>
+                            <i class="fas fa-download"></i> Download HD Image
+                         </a>`, true);
+                    showNotification('Image enhanced successfully');
+                } else {
+                    throw new Error(data.message || 'Failed to enhance image');
+                }
+            } catch (error) {
+                showResult('imageResult', 'imageResultContent', 
+                    `❌ Error: ${error.message}<br>
+                     Make sure the URL points to a valid image`);
+                showNotification('Enhancement failed', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function createAnomali() {
+            const text = document.getElementById('anomaliText').value;
+            const color = document.getElementById('anomaliColor').value;
+            
+            if (!text || !color) {
+                showNotification('Please fill all fields', 'error');
+                return;
+            }
+
+            showLoading();
+            try {
+                const response = await fetch(`${API_BASE}/maker/brat?text=${encodeURIComponent(text)}&words=${encodeURIComponent(color)}`);
+                const data = await response.json();
+                
+                if (data.status === 'success' && data.url) {
+                    showResult('anomaliResult', 'anomaliResultContent', 
+                        `<img src="${data.url}" class="result-image" alt="Anomali Sticker"><br>
+                         <a href="${data.url}" class="btn btn-primary download-btn" download>
+                            <i class="fas fa-download"></i> Download Sticker
+                         </a>`, true);
+                    showNotification('Sticker created successfully');
+                } else {
+                    throw new Error(data.message || 'Failed to create sticker');
+                }
+            } catch (error) {
+                showResult('anomaliResult', 'anomaliResultContent', 
+                    `❌ Error: ${error.message}<br>
+                     Please try different text or color`);
+                showNotification('Creation failed', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function createIQC() {
+            const text = document.getElementById('iqcText').value;
+            const time = document.getElementById('iqcTime').value;
+            
+            if (!text || !time) {
+                showNotification('Please fill all fields', 'error');
+                return;
+            }
+
+            showLoading();
+            try {
+                const response = await fetch(`${API_BASE}/maker/iqc?text=${encodeURIComponent(text)}&time=${encodeURIComponent(time)}`);
+                const data = await response.json();
+                
+                if (data.status === 'success' && data.url) {
+                    showResult('iqcResult', 'iqcResultContent', 
+                        `<img src="${data.url}" class="result-image" alt="IQC Image"><br>
+                         <a href="${data.url}" class="btn btn-primary download-btn" download>
+                            <i class="fas fa-download"></i> Download IQC Image
+                         </a>`, true);
+                    showNotification('IQC image created successfully');
+                } else {
+                    throw new Error(data.message || 'Failed to create IQC image');
+                }
+            } catch (error) {
+                showResult('iqcResult', 'iqcResultContent', 
+                    `❌ Error: ${error.message}<br>
+                     Please try different text or time format`);
+                showNotification('Creation failed', 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        // ====== THEME TOGGLE ======
+        function toggleTheme() {
+            const themeToggle = document.getElementById('themeToggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (document.body.classList.contains('light-theme')) {
+                document.body.classList.remove('light-theme');
+                icon.className = 'fas fa-moon';
+                showNotification('Switched to dark theme');
+            } else {
+                document.body.classList.add('light-theme');
+                icon.className = 'fas fa-sun';
+                showNotification('Switched to light theme');
+            }
+        }
+
+        // ====== LIGHT THEME STYLES ======
+        const lightThemeStyles = `
+            .light-theme {
+                --dark: #f8f9fa;
+                --dark-alt: #e9ecef;
+                --light: #212529;
+                --glass: rgba(0, 0, 0, 0.05);
+                --glass-border: rgba(0, 0, 0, 0.1);
+                --gray: #6c757d;
+            }
+            
+            .light-theme .sidebar {
+                background: rgba(255, 255, 255, 0.8);
+            }
+            
+            .light-theme .tool-item:hover {
+                background: rgba(67, 97, 238, 0.1);
+            }
+            
+            .light-theme .result-container {
+                background: rgba(0, 0, 0, 0.05);
+            }
+        `;
+
+        const styleElement = document.createElement('style');
+        styleElement.textContent = lightThemeStyles;
+        document.head.appendChild(styleElement);
+    </script>
+</body>
+</html>
